@@ -1,25 +1,40 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUser} from "../actions/authActions";
-import {useEffect} from 'react';
+import {getUser} from "../actions/userActions";
 
-const UserDetails = (props) => {
+class UserDetails extends React.Component {
 
-    useEffect(() => {
-        props.getUser();
-    })
+    componentDidMount() {
+        this.props.getUser();
+    }
 
-    return(
-        <div>
-            UserDetails
-        </div>
-    )
-}
+    renderUserDetails() {
+        if (!this.props.user) {
+            return <div>Loading...</div>
+        }
+        return(
+            <div className="item">
+                UserDetails
+                <div className="content">
+                    <div className="description">
+                        I'm {this.props.user.firstName} {this.props.user.lastName} my role is {this.props.user.role.name}
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
-const mapStateToProps = (state) => {
-    return{
-        user: state.user
+    render() {
+        return(
+            <div>
+                {this.renderUserDetails()}
+            </div>
+        )
     }
 }
 
-export default connect(null, {getUser})(UserDetails);
+const mapStateToProps = (state) => {
+    return {user: state.authReducer.user};
+}
+
+export default connect(mapStateToProps, {getUser})(UserDetails);

@@ -40,32 +40,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource);
     }
 
-    @Override
+
+
+        @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors()
-                .and()
-                .csrf()
-                .disable()
-                .httpBasic()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/",
-                        "/favicon.ico",
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js")
-                .permitAll()
-                .antMatchers("/api/auth/**")
-                .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/user/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
-//        .and().formLogin().disable();
+            .cors()
+            .and()
+            .csrf()
+            .disable()
+//            .httpBasic()
+//            .and()
+            .authorizeRequests()
+            .antMatchers("/",
+                    "/favicon.ico",
+                    "/**/*.png",
+                    "/**/*.gif",
+                    "/**/*.svg",
+                    "/**/*.jpg",
+                    "/**/*.html",
+                    "/**/*.css",
+                    "/**/*.js")
+            .permitAll()
+            .antMatchers("/api/auth/**")
+            .permitAll()
+//            .antMatchers(HttpMethod.GET, "/api/user/**")
+//            .permitAll()
+            .anyRequest()
+            .authenticated();
+//            .and().formLogin().disable();
+
     }
 }

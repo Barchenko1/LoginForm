@@ -1,5 +1,6 @@
 package com.barchenko.loginbackend.rest;
 
+import com.barchenko.loginbackend.auth.AuthenticationBean;
 import com.barchenko.loginbackend.dao.RoleDao;
 import com.barchenko.loginbackend.dao.UserDao;
 import com.barchenko.loginbackend.dto.LoginRequest;
@@ -47,9 +48,8 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
-
-        return ResponseEntity.ok(200);
+    public ResponseEntity<?> authenticateUser() {
+        return ResponseEntity.ok(new AuthenticationBean("You are authenticated"));
     }
 
     @PostMapping("/signup")
@@ -59,7 +59,6 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
 
-//        Optional<Role> role = roleDao.findRoleByName(USER_ROLE.getValue());
         Role role = roleDao.findRoleByName(registrationRequest.getRole())
                 .orElse(roleDao.findById(1L).get());
 

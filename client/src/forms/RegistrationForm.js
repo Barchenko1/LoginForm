@@ -30,11 +30,11 @@ class RegistrationForm extends React.Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
                 <Field
-                    name="First Name"
+                    name="firstName"
                     component={this.renderInput}
                     label="First Name"/>
                 <Field
-                    name="Last Name"
+                    name="lastName"
                     component={this.renderInput}
                     label="Last Name"/>
                 <Field
@@ -45,10 +45,10 @@ class RegistrationForm extends React.Component {
                     name="password"
                     component={this.renderInput}
                     label="Password"/>
-                <Field
-                    name="confirm password"
-                    component={this.renderInput}
-                    label="Confirm Password"/>
+                {/*<Field*/}
+                {/*    name="confirm password"*/}
+                {/*    component={this.renderInput}*/}
+                {/*    label="Confirm Password"/>*/}
                 <button className="ui button primary">
                     Register
                 </button>

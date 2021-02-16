@@ -32,7 +32,6 @@ public class UserController {
         List<User> users = userDao.findAll();
         List<UserRoleDto> userRoleDtoList = new ArrayList<>();
         users.forEach(i -> {
-//            Role role = roleDao.findById(i.getRole().getId()).get();
             UserRoleDto userRoleDto = createUserRoleDto(i.getFirstName(), i.getLastName(), i.getRole().getName());
             userRoleDtoList.add(userRoleDto);
         });

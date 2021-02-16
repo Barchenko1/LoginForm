@@ -1,4 +1,4 @@
-package com.in28minutes.fullstack.springboot.fullstack.basic.authentication.springbootfullstackbasicauthloginlogout.basic.auth;
+package com.barchenko.loginbackend.auth;
 public class AuthenticationBean {
 
     private String message;
