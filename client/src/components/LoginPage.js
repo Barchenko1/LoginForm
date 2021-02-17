@@ -6,7 +6,6 @@ import {signIn} from "../actions/authActions";
 class LoginPage extends React.Component {
 
     onSubmit = (formProps) => {
-        console.log(formProps)
         this.props.signIn(formProps);
     }
 

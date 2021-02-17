@@ -14,7 +14,7 @@ class UserList extends React.Component {
                 <div className="item" key={index}>
                     <div className="content">
                         <div className="description">
-                            {user.firstName} {user.lastName} {user.role}
+                            {user.login} {user.email} {user.role}
                         </div>
                     </div>
                 </div>

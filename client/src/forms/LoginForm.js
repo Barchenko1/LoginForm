@@ -31,9 +31,9 @@ class LoginForm extends React.Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
                 <Field
-                    name="login"
+                    name="usernameOrEmail"
                     component={this.renderInput}
-                    label="Enter Login"/>
+                    label="Enter Login or Email"/>
                 <Field
                     name="password"
                     component={this.renderInput}

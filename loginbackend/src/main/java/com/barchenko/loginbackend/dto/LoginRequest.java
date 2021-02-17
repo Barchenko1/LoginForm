@@ -3,18 +3,18 @@ package com.barchenko.loginbackend.dto;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
-
     @NotBlank
-    private String login;
+    private String usernameOrEmail;
+
     @NotBlank
     private String password;
 
-    public String getLogin() {
-        return login;
+    public String getUsernameOrEmail() {
+        return usernameOrEmail;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsernameOrEmail(String usernameOrEmail) {
+        this.usernameOrEmail = usernameOrEmail;
     }
 
     public String getPassword() {

@@ -4,6 +4,7 @@ public class RegistrationRequest {
     private String firstName;
     private String lastName;
     private String login;
+    private String email;
     private String password;
     private String role;
 
@@ -29,6 +30,14 @@ public class RegistrationRequest {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -8,6 +8,17 @@ class UserDetails extends React.Component {
         this.props.getUser();
     }
 
+    renderUser() {
+        console.log(this.props)
+        if (this.props.user.accessToken) {
+            return(
+                <div className="description">
+                    I'm {this.props.user.email} my role is
+                </div>
+            )
+        }
+    }
+
     renderUserDetails() {
         if (!this.props.user) {
             return <div>Loading...</div>
@@ -16,9 +27,7 @@ class UserDetails extends React.Component {
             <div className="item">
                 UserDetails
                 <div className="content">
-                    <div className="description">
-                        I'm {this.props.user.firstName} {this.props.user.lastName} my role is {this.props.user.role.name}
-                    </div>
+                    {this.renderUser()}
                 </div>
             </div>
         )
@@ -34,6 +43,7 @@ class UserDetails extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {user: state.authReducer.user};
 }
 
