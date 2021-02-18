@@ -6,7 +6,6 @@ export const getBook = (id) => async dispatch => {
     const response = await apis.get(`/api/book/${id}`,
         { headers: { authorization: createBasicAuthToken(sessionStorage.getItem("login"), sessionStorage.getItem("password")) }}
     );
-    console.log(response.data);
     dispatch ({
         type: GET_BOOK,
         payload: response.data
@@ -24,6 +23,7 @@ export const getBooks = () => async dispatch  => {
 }
 
 export const searchBooks = (searchStr) => async dispatch => {
+    console.log(searchStr)
     const response = await apis.get(`/api/book/${searchStr}`,
         { headers: { authorization: createBasicAuthToken(sessionStorage.getItem("login"), sessionStorage.getItem("password")) }}
     )

@@ -6,25 +6,16 @@ import {Link} from "react-router-dom";
 
 class SolrBookList extends React.Component {
 
-    componentDidMount() {
-        // this.props.getBooks(this.props.match.params.id);
-    }
-
     onTermSubmit = async term => {
-        console.log(term);
         this.props.searchBooks(term);
     };
 
     renderBookList() {
-        console.log(this.props)
         return this.props.books.map((book, index) => {
             return(
                 <div className="item" key={index}>
                     <div className="content">
-                        title is
-                        <Link to={`/book/${book.id}`}>
-                            {book.title}
-                        </Link>
+                        title is <Link to={`/book/${book.id}`}>{book.title}</Link>
                         <div className="description">
                             author is {book.author}
                         </div>
@@ -40,6 +31,7 @@ class SolrBookList extends React.Component {
                 <h2>Admin</h2>
                 <SearchBar label="Book search" onFormSubmit={this.onTermSubmit}/>
                 <div className="ui celled list">
+                    {/*{JSON.parse(sessionStorage.getItem('roles')).find(role => role.authority === 'ROLE_ADMIN').authority ? this.renderBookList() : null}*/}
                     {this.renderBookList()}
                 </div>
             </div>
@@ -49,7 +41,7 @@ class SolrBookList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        books: state.sorlBooks.books
+        books: state.solrBooks.books
     }
 }
 

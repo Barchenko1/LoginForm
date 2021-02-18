@@ -7,7 +7,6 @@ import {createBasicAuthToken} from "../services/ApiUtilsService";
 export const getUser = () => async dispatch => {
     const user = JSON.parse(localStorage.getItem('user'));
     const response = await apis.get(`/api/user/me?login=${user.login}`);
-    console.log(response.data);
     dispatch ({
         type: GET_USER,
         payload: response.data
@@ -15,11 +14,9 @@ export const getUser = () => async dispatch => {
 }
 
 export const getUsers = () => async dispatch  => {
-    console.log("getUsers")
     const response = await apis.get("/api/user/all",
         { headers: { authorization: createBasicAuthToken(sessionStorage.getItem("login"), sessionStorage.getItem("password")) }}
     );
-    console.log(response);
     dispatch ({
         type: GET_USERS,
         payload: response.data

@@ -5,7 +5,7 @@ import {getBook} from "../actions/solrBookActions";
 class SolrBookDetails extends React.Component {
 
     render() {
-        console.log(this.props)
+        console.log(this.props);
         if (!this.props.book) {
             return <div>Loading...</div>
         }
@@ -24,7 +24,7 @@ class SolrBookDetails extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        book: state.sorlBooks.books[ownProps.match.params.id]
+        book: state.solrBooks.books.find(book => book.id == ownProps.match.params.id)
     }
 }
 

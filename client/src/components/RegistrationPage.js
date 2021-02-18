@@ -6,7 +6,6 @@ import {registration} from '../actions/authActions';
 class RegistrationPage extends React.Component {
 
     onSubmit = (formProps) => {
-        console.log(formProps)
         this.props.registration(formProps);
     }
 

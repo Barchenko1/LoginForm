@@ -14,7 +14,7 @@ const logout = () => {
     sessionStorage.removeItem('login');
     sessionStorage.removeItem('password');
     sessionStorage.removeItem('token');
-
+    sessionStorage.removeItem('roles');
     // deleteAxiosInterceptors();
 }
 
@@ -25,7 +25,6 @@ const isUserLoggedIn = () => {
 }
 
 const setupAxiosInterceptors = (token) => {
-    console.log(token)
     apis.interceptors.request.use(
         (config) => {
             if (isUserLoggedIn()) {
@@ -36,44 +35,25 @@ const setupAxiosInterceptors = (token) => {
     )
 }
 
-const deleteAxiosInterceptors = () => {
-    console.log("deleteAxiosInterceptors")
-    apis.interceptors.request.use(
-        (config) => {
-            delete config.headers.authorization
-            return config;
-        }
-    )
-}
-
-const createSetAuthInterceptor = options => config => {
-    if (options.access) {
-        config.headers.Authorization = options.access;
-    } else {
-        delete config.headers.Authorization;
-    }
-    return config;
-};
-
-const registerSuccessfulLogin = (username, password) => {
+const registerSuccessfulLogin = ({password}, {username, authorities }) => {
     sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
     sessionStorage.setItem("login", username);
     sessionStorage.setItem("password", password);
-    sessionStorage.setItem('token', createBasicAuthToken(username, password))
+    sessionStorage.setItem('token', createBasicAuthToken(username, password));
+    sessionStorage.setItem('roles', JSON.stringify(authorities));
     // setupAxiosInterceptors(createBasicAuthToken(username, password))
 }
 
 export const signIn = (formProps) => async dispatch => {
-    console.log(formProps);
     const response = await apis.post('/api/auth/signin', formProps,
         { headers: { authorization: createBasicAuthToken(formProps.usernameOrEmail, formProps.password) }}
     )
-    console.log(response.data);
     dispatch ({
         type: SIGN_IN,
         payload: response.data
     })
-    registerSuccessfulLogin(formProps.usernameOrEmail, formProps.password);
+    console.log(response.data)
+    registerSuccessfulLogin(formProps, response.data.principal);
     history.push(BOOK_LIST);
 };
 
@@ -89,7 +69,6 @@ export const signOut = () => async dispatch => {
 export const registration = (formProps) => async dispatch => {
     const form = {...formProps, role:"USER"}
     const response = await apis.post('/api/auth/signup', form);
-    console.log(response);
     dispatch ({
         type: REGISTRATION,
         payload: response.data

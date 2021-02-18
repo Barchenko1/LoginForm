@@ -1,6 +1,7 @@
 package com.barchenko.loginFormBackend.modal;
 
 import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
 import javax.persistence.Id;
@@ -11,10 +12,13 @@ public class Book {
     @Field
     private int id;
     @Field
+    @Indexed(name = "title", type = "string")
     private String title;
     @Field
+    @Indexed(name = "author", type = "string")
     private String author;
     @Field
+    @Indexed(name = "description", type = "string")
     private String description;
 
     public Book(int id, String title, String author, String description) {

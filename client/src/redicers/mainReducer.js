@@ -7,6 +7,6 @@ import sorlBookReducer from "./solrBookReducer";
 export default combineReducers({
     authReducer,
     users: userReducer,
-    sorlBooks: sorlBookReducer,
+    solrBooks: sorlBookReducer,
     form: reducer
 })

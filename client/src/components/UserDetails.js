@@ -9,7 +9,6 @@ class UserDetails extends React.Component {
     }
 
     renderUser() {
-        console.log(this.props)
         if (this.props.user.accessToken) {
             return(
                 <div className="description">
@@ -43,7 +42,6 @@ class UserDetails extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {user: state.authReducer.user};
 }
 
