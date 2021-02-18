@@ -31,22 +31,6 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Book> fetchMockBooks() {
-        List<Book> books = new ArrayList<>();
-        int counter = 0;
-        books.add(new Book(counter++, "AAA", "A.A.", "description"));
-        books.add(new Book(counter++, "BBB", "B.B.", "description"));
-        books.add(new Book(counter++, "CCC", "C.C.", "description"));
-        books.add(new Book(counter++, "DDD", "D.D.", "description"));
-        return books;
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public Book getBookDetails(@PathParam("title") String title) {
-        return null;
-    }
-
 //
 //    @GetMapping("/user/me")
 //    @PreAuthorize("hasRole('USER')")

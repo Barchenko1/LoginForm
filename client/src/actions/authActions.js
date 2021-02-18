@@ -1,6 +1,6 @@
 import {REGISTRATION, SIGN_IN, SIGN_OUT, GET_USER, GET_USERS} from "./types";
 import apis from "../utils/apis";
-import {ACCESS_TOKEN, LOGIN_PAGE, USER_DETAILS, USER_LIST} from "../utils/consts";
+import {ACCESS_TOKEN, BOOK_LIST, LOGIN_PAGE, USER_DETAILS, USER_LIST} from "../utils/consts";
 import history from "../utils/history";
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
@@ -74,7 +74,7 @@ export const signIn = (formProps) => async dispatch => {
         payload: response.data
     })
     registerSuccessfulLogin(formProps.usernameOrEmail, formProps.password);
-    history.push(USER_LIST);
+    history.push(BOOK_LIST);
 };
 
 export const signOut = () => async dispatch => {

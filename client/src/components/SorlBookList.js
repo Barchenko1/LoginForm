@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {connect} from 'react-redux';
-import {getUsers} from "../actions/userActions";
+import {getBooks} from "../actions/sorlBookActions";
 import SearchBar from "./SearchBar";
 
-class UserList extends React.Component {
+class SorlBookList extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers();
+        this.props.getBooks();
     }
 
     onTermSubmit = async term => {
@@ -18,13 +18,14 @@ class UserList extends React.Component {
         // this.setState({videos : response.data.items, selectedVideo: response.data.items[0]})
     };
 
-    renderUserList() {
-        return this.props.users.map((user, index) => {
+    renderBookList() {
+        console.log(this.props)
+        return this.props.books.map((book, index) => {
             return(
                 <div className="item" key={index}>
                     <div className="content">
                         <div className="description">
-                            {user.login} {user.email} {user.role}
+                            book
                         </div>
                     </div>
                 </div>
@@ -38,16 +39,17 @@ class UserList extends React.Component {
                 <h2>Admin</h2>
                 <SearchBar label="Book search" onFormSubmit={this.onTermSubmit}/>
                 <div className="ui celled list">
-                    {this.renderUserList()}
+                    {this.renderBookList()}
                 </div>
             </div>
         );
     }
 }
-const mapStateToProps = (state) => {
-    return{
-        users: state.users.users
+
+const mapStateToProps = state => {
+    return {
+        books: state.sorlBooks.books
     }
 }
 
-export default connect(mapStateToProps, {getUsers})(UserList);
+export default connect(mapStateToProps, {getBooks})(SorlBookList);

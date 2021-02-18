@@ -1,32 +1,30 @@
-import {GET_USER, GET_USERS, SIGN_OUT} from "./types";
 import apis from "../utils/apis";
-import history from "../utils/history";
-import {ACCESS_TOKEN} from "../utils/consts";
+import {GET_BOOK, GET_BOOKS, SIGN_OUT} from "./types";
 import {createBasicAuthToken} from "../services/ApiUtilsService";
 
-export const getUser = () => async dispatch => {
+export const getBook = () => async dispatch => {
     const user = JSON.parse(localStorage.getItem('user'));
     const response = await apis.get(`/api/user/me?login=${user.login}`);
     console.log(response.data);
     dispatch ({
-        type: GET_USER,
+        type: GET_BOOK,
         payload: response.data
     })
 }
 
-export const getUsers = () => async dispatch  => {
-    console.log("getUsers")
-    const response = await apis.get("/api/user/all",
+export const getBooks = () => async dispatch  => {
+    console.log("getBooks")
+    const response = await apis.get("/api/book/all",
         { headers: { authorization: createBasicAuthToken(sessionStorage.getItem("login"), sessionStorage.getItem("password")) }}
     );
     console.log(response);
     dispatch ({
-        type: GET_USERS,
+        type: GET_BOOKS,
         payload: response.data
     })
 }
 
-export const cleanUsers = () => async dispatch => {
+export const cleanBooks = () => async dispatch => {
     dispatch ({
         type: SIGN_OUT
     })

@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {signOut} from "../actions/authActions";
-import authReducer from "../redicers/authReducer";
 import {cleanUsers} from "../actions/userActions";
+import {cleanBooks} from "../actions/sorlBookActions";
 
 const Header = (props) => {
 
     const renderLogOutActions = () => {
+        props.cleanBooks();
         props.cleanUsers();
         props.signOut();
     }
@@ -39,4 +40,4 @@ const mapStateToProps = state => {
     return { isSignedIn: state.authReducer.isSignedIn }
 }
 
-export default connect(mapStateToProps, {signOut, cleanUsers})(Header);
+export default connect(mapStateToProps, {signOut, cleanUsers, cleanBooks})(Header);

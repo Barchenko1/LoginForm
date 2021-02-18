@@ -13,7 +13,6 @@ export default (state = INIT_STATE, action) => {
         return {...state, users: action.payload}
     }
     if (action.type === SIGN_OUT) {
-        console.log(state)
         return {...state, user: null, users: []}
     }
 
