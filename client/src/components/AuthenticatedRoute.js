@@ -5,7 +5,6 @@ import {LOGIN_PAGE} from "../utils/consts";
 
 class AuthenticatedRoute extends React.Component {
     render() {
-        console.log(isUserLoggedIn())
         if (isUserLoggedIn()) {
             return <Route {...this.props} />
         } else {

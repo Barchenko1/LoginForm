@@ -5,3 +5,4 @@ export const GET_USER = 'GET_USER';
 export const GET_USERS = 'GET_USERS';
 export const GET_BOOK = 'GET_BOOK';
 export const GET_BOOKS = 'GET_BOOKS';
+export const SEARCH_BOOKS = 'SEARCH_BOOKS';

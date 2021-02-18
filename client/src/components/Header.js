@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {signOut} from "../actions/authActions";
 import {cleanUsers} from "../actions/userActions";
-import {cleanBooks} from "../actions/sorlBookActions";
+import {cleanBooks} from "../actions/solrBookActions";
 
 const Header = (props) => {
 
@@ -13,7 +13,6 @@ const Header = (props) => {
     }
 
     const renderLogOutButton = () => {
-        console.log(props)
         if (props.isSignedIn === null) {
             return null;
         } else if (props.isSignedIn) {

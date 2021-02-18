@@ -3,6 +3,7 @@ export const REGISTRATION_PAGE = '/registration';
 export const USER_DETAILS = '/user-details';
 export const USER_LIST = '/user-list';
 export const BOOK_LIST = '/book-list';
+export const BOOK_ID = '/book/:id'
 export const MAIN_PAGE = '/';
 
 

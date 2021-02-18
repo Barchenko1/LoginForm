@@ -1,9 +1,20 @@
-package com.barchenko.loginFormBackend.mockObj;
+package com.barchenko.loginFormBackend.modal;
 
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
+import javax.persistence.Id;
+
+@SolrDocument(collection = "book")
 public class Book {
+    @Id
+    @Field
     private int id;
+    @Field
     private String title;
+    @Field
     private String author;
+    @Field
     private String description;
 
     public Book(int id, String title, String author, String description) {

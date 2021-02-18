@@ -1,21 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getBooks} from "../actions/sorlBookActions";
+import {getBooks, searchBooks} from "../actions/solrBookActions";
 import SearchBar from "./SearchBar";
+import {Link} from "react-router-dom";
 
-class SorlBookList extends React.Component {
+class SolrBookList extends React.Component {
 
     componentDidMount() {
-        this.props.getBooks();
+        // this.props.getBooks(this.props.match.params.id);
     }
 
     onTermSubmit = async term => {
-        // const response = await youtube.get('/search', {
-        //     params: {
-        //         q: term
-        //     }
-        // });
-        // this.setState({videos : response.data.items, selectedVideo: response.data.items[0]})
+        console.log(term);
+        this.props.searchBooks(term);
     };
 
     renderBookList() {
@@ -24,8 +21,12 @@ class SorlBookList extends React.Component {
             return(
                 <div className="item" key={index}>
                     <div className="content">
+                        title is
+                        <Link to={`/book/${book.id}`}>
+                            {book.title}
+                        </Link>
                         <div className="description">
-                            book
+                            author is {book.author}
                         </div>
                     </div>
                 </div>
@@ -52,4 +53,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getBooks})(SorlBookList);
+export default connect(mapStateToProps, {getBooks, searchBooks})(SolrBookList);
