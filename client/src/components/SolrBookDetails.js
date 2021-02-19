@@ -4,6 +4,13 @@ import {getBook} from "../actions/solrBookActions";
 
 class SolrBookDetails extends React.Component {
 
+    makeBold(input) {
+        let regExp = new RegExp(this.props.term, 'g')
+        return (
+            input.replace(regExp, '<b>'+ this.props.term + '</b>')
+        )
+    }
+
     render() {
         console.log(this.props);
         if (!this.props.book) {
@@ -14,9 +21,9 @@ class SolrBookDetails extends React.Component {
 
         return (
             <div>
-                <h1>{title}</h1>
-                <h5>{author}</h5>
-                <h5>{description}</h5>
+                <p>{this.makeBold(title)}</p>
+                <p>{this.makeBold(author)}</p>
+                <p>{this.makeBold(description)}</p>
             </div>
         )
     };
@@ -24,7 +31,8 @@ class SolrBookDetails extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        book: state.solrBooks.books.find(book => book.id == ownProps.match.params.id)
+        book: state.solrBooks.books.find(book => book.id == ownProps.match.params.id),
+        term: state.solrBooks.term
     }
 }
 

@@ -1,6 +1,7 @@
 import {GET_BOOK, GET_BOOKS, SEARCH_BOOKS, SIGN_OUT} from '../actions/types'
 
 const INIT_STATE = {
+    term: '',
     book: null,
     books: []
 }
@@ -13,10 +14,10 @@ export default (state = INIT_STATE, action) => {
         return {...state, books: action.payload}
     }
     if (action.type === SIGN_OUT) {
-        return {...state, book: null, books: []}
+        return {...state, book: null, books: [], term: ''}
     }
     if (action.type === SEARCH_BOOKS) {
-        return {...state, books: action.payload}
+        return {...state, books: action.payload, term: action.term}
     }
 
     return state;

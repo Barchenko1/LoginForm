@@ -23,13 +23,14 @@ export const getBooks = () => async dispatch  => {
 }
 
 export const searchBooks = (searchStr) => async dispatch => {
-    console.log(searchStr)
+    console.log(searchStr);
     const response = await apis.get(`/api/book/${searchStr}`,
         { headers: { authorization: createBasicAuthToken(sessionStorage.getItem("login"), sessionStorage.getItem("password")) }}
     )
     console.log(response);
     dispatch ({
         type: SEARCH_BOOKS,
+        term: searchStr,
         payload: response.data
     })
 }
