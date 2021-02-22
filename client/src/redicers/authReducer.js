@@ -1,4 +1,4 @@
-import {GET_USER, GET_USERS, REGISTRATION, SIGN_IN, SIGN_OUT} from '../actions/types'
+import {REGISTRATION, SIGN_IN, SIGN_OUT} from '../actions/types'
 
 const INIT_STATE = {
     username: null,

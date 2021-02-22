@@ -5,10 +5,14 @@ import {getBook} from "../actions/solrBookActions";
 class SolrBookDetails extends React.Component {
 
     makeBold(input) {
-        let regExp = new RegExp(this.props.term, 'g')
-        return (
-            input.replace(regExp, '<b>'+ this.props.term + '</b>')
-        )
+        const args = this.props.term.split(' ');
+        args.forEach(e => {
+            const regExp = new RegExp(e, 'gi');
+            const replacement = `<span style='background: red'>${e}</span>`;
+            input = input.replace(regExp, replacement);
+            console.log(input);
+        })
+        return <div dangerouslySetInnerHTML={{__html: input}}/>;
     }
 
     render() {
