@@ -38,12 +38,15 @@ public class BookController {
     }
 
 //    @PostConstruct
-//    private void deleteSolr() {
-//        solrBookRepository.deleteAll();
-//    }
+    @RequestMapping(path = "/solr/clean", method = RequestMethod.GET)
+    public String deleteSolr() {
+        solrBookRepository.deleteAll();
+        return "books are deleted";
+    }
 
 //    @PostConstruct
-    private void getBooks() {
+    @RequestMapping(path = "/solr/add", method = RequestMethod.GET)
+    public String getBooks() {
         List<Book> books = new ArrayList<>();
         int counter = 0;
         books.add(new Book(counter++, "Ревизор", "Николай Гоголь", "«Ревизор» — одна из лучших русских комедий. Н.В. Гоголь заставил современников смеяться над тем, к чему они привыкли и что перестали замечать. И сегодня комедия, созданная великим русским писателем, продолжая звучать современно, указывает путь к нравственному возрождению."));
@@ -87,6 +90,7 @@ public class BookController {
         books.add(new Book(counter++, "Надвигается беда", "Рэй Брэдбери", "завертелась жуткая карусель, в Зловещий Зеркальный лабиринт вошли первые посетители - это приехал разъездной карнавал. маленький городок оказался во власти злых и жестоких сил, и только чистые душой способны спасти жителей городка от превращения в ужасных зомби."));
         books.add(new Book(counter++, "Война и мир", "Лев Толстой", "Роман-эпопея, описывающий события войн против Наполеона: 1805 года и отечественной 1812 года. Признан критикой всего мира величайшим эпическим произведением литературы нового времени."));
         solrBookRepository.saveAll(books);
+        return "books are created";
     }
 
 }

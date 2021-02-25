@@ -17,9 +17,12 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/medilabLoginFormDB?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_SOLR_HOST: http://localhost:8983/solr
     networks: # Networks to join (Services on the same network can communicate with each other using their name and no need of address)
       - backend
       - frontend
+      - solr
+
   # Frontend Service
   client:
     build:
@@ -48,10 +51,30 @@ services:
       - db-data:/var/lib/mysql
     networks:
       - backend
+
+  solr:
+    image: solr:8.8.0
+    container_name: solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - data:/opt/solr/server/solr/book
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - book
+    depends_on:
+      - server
+    networks:
+      - solr
+
 # Define Volumes to be created
 volumes:
   db-data:
+  data:
 # Define Networks to be created to facilitate communication between containers
 networks:
   backend:
   frontend:
+  solr:
+    driver: bridge
